@@ -37,6 +37,18 @@ char *eread(FILE *filePtr);
 
 void eprint(FILE *filePtr);
 
+/**************************************/
+/* Read a line */
+/**************************************/
+
+char *ereadLine(FILE *filePtr);
+
+/**************************************/
+/* Read a lines, Returns an array */
+/**************************************/
+
+// char **ereadLines(FILE *filePtr);
+
 #endif
 
 /**************************************/

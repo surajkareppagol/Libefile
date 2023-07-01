@@ -8,8 +8,9 @@ int main()
 {
   eopen("testfile.txt", "r");
 
-  char *newBuffer = eread(NULL);
-  printf("%s", newBuffer);
+  char **newBuffer = ereadLines(NULL);
+  // for (int i = 0; i < 1; i++)
+  printf("%s", newBuffer[0]);
 
   return 0;
 }

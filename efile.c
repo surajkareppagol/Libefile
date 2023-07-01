@@ -4,9 +4,11 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#define MAX_BUFFER_LENGTH 10000
+#define MAX_CHARACTER_BUFFER_LENGTH 10000
+#define MAX_LINE_BUFFER_LENGTH 10000
 
-char *characterBuffer, *intialAddress;
+char *characterBuffer, *intialCharacterAddress;
+char **lineBuffer, **intialLineAddress;
 
 /**************************************/
 /* Main functions */
@@ -53,8 +55,8 @@ char *eread(FILE *filePtr)
 
   char character;
 
-  characterBuffer = (char *)malloc(MAX_BUFFER_LENGTH * sizeof(char));
-  intialAddress = characterBuffer;
+  characterBuffer = (char *)malloc(MAX_CHARACTER_BUFFER_LENGTH * sizeof(char));
+  intialCharacterAddress = characterBuffer;
 
   while ((character = fgetc(filePtr)) != EOF)
     *characterBuffer++ = character;
@@ -62,7 +64,9 @@ char *eread(FILE *filePtr)
   *characterBuffer++ = '\n';
   *characterBuffer = '\0';
 
-  return intialAddress;
+  characterBuffer = NULL;
+
+  return intialCharacterAddress;
 }
 
 /**************************************/
@@ -79,6 +83,71 @@ void eprint(FILE *filePtr)
     printf("%c", character);
   printf("\n");
 }
+
+/**************************************/
+/* Read a line */
+/**************************************/
+
+char *ereadLine(FILE *filePtr)
+{
+  if (filePtr == NULL)
+    filePtr = mainFilePtr;
+
+  char character;
+
+  characterBuffer = (char *)malloc(MAX_CHARACTER_BUFFER_LENGTH * sizeof(char));
+  intialCharacterAddress = characterBuffer;
+
+  while ((character = fgetc(filePtr)) != '\n')
+    *characterBuffer++ = character;
+
+  *characterBuffer++ = '\n';
+  *characterBuffer = '\0';
+
+  characterBuffer = NULL;
+
+  return intialCharacterAddress;
+}
+
+/**************************************/
+/* Read a lines, Returns an array */
+/**************************************/
+
+#if 0
+char **ereadLines(FILE *filePtr)
+{
+  if (filePtr == NULL)
+    filePtr = mainFilePtr;
+
+  char character;
+
+  // lineBuffer = (char **)malloc(MAX_LINE_BUFFER_LENGTH * sizeof(char));
+  characterBuffer = (char *)malloc(MAX_CHARACTER_BUFFER_LENGTH * sizeof(char));
+  intialCharacterAddress = characterBuffer;
+  intialLineAddress = lineBuffer;
+
+  while ((character = fgetc(filePtr)) != EOF)
+  {
+    *characterBuffer++ = character;
+    if (character == '\n')
+    {
+      *characterBuffer++ = '\n';
+      *characterBuffer = '\0';
+      // Error
+      lineBuffer = intialCharacterAddress;
+      lineBuffer++;
+      characterBuffer = (char *)malloc(MAX_CHARACTER_BUFFER_LENGTH * sizeof(char));
+      intialCharacterAddress = characterBuffer;
+    }
+  }
+
+  characterBuffer = NULL;
+  lineBuffer = NULL;
+
+  return intialLineAddress;
+}
+
+#endif
 
 /**************************************/
 /* EOF */
