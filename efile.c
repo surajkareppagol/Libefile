@@ -7,8 +7,7 @@
 #define MAX_CHARACTER_BUFFER_LENGTH 10000
 #define MAX_LINE_BUFFER_LENGTH 10000
 
-char *characterBuffer, *intialCharacterAddress;
-char **lineBuffer, **intialLineAddress;
+char *characterBuffer, *initialCharacterAddress;
 
 /**************************************/
 /* Main functions */
@@ -56,7 +55,7 @@ char *eread(FILE *filePtr)
   char character;
 
   characterBuffer = (char *)malloc(MAX_CHARACTER_BUFFER_LENGTH * sizeof(char));
-  intialCharacterAddress = characterBuffer;
+  initialCharacterAddress = characterBuffer;
 
   while ((character = fgetc(filePtr)) != EOF)
     *characterBuffer++ = character;
@@ -66,7 +65,7 @@ char *eread(FILE *filePtr)
 
   characterBuffer = NULL;
 
-  return intialCharacterAddress;
+  return initialCharacterAddress;
 }
 
 /**************************************/
@@ -96,7 +95,7 @@ char *ereadLine(FILE *filePtr)
   char character;
 
   characterBuffer = (char *)malloc(MAX_CHARACTER_BUFFER_LENGTH * sizeof(char));
-  intialCharacterAddress = characterBuffer;
+  initialCharacterAddress = characterBuffer;
 
   while ((character = fgetc(filePtr)) != '\n')
     *characterBuffer++ = character;
@@ -106,48 +105,8 @@ char *ereadLine(FILE *filePtr)
 
   characterBuffer = NULL;
 
-  return intialCharacterAddress;
+  return initialCharacterAddress;
 }
-
-/**************************************/
-/* Read a lines, Returns an array */
-/**************************************/
-
-#if 0
-char **ereadLines(FILE *filePtr)
-{
-  if (filePtr == NULL)
-    filePtr = mainFilePtr;
-
-  char character;
-
-  // lineBuffer = (char **)malloc(MAX_LINE_BUFFER_LENGTH * sizeof(char));
-  characterBuffer = (char *)malloc(MAX_CHARACTER_BUFFER_LENGTH * sizeof(char));
-  intialCharacterAddress = characterBuffer;
-  intialLineAddress = lineBuffer;
-
-  while ((character = fgetc(filePtr)) != EOF)
-  {
-    *characterBuffer++ = character;
-    if (character == '\n')
-    {
-      *characterBuffer++ = '\n';
-      *characterBuffer = '\0';
-      // Error
-      lineBuffer = intialCharacterAddress;
-      lineBuffer++;
-      characterBuffer = (char *)malloc(MAX_CHARACTER_BUFFER_LENGTH * sizeof(char));
-      intialCharacterAddress = characterBuffer;
-    }
-  }
-
-  characterBuffer = NULL;
-  lineBuffer = NULL;
-
-  return intialLineAddress;
-}
-
-#endif
 
 /**************************************/
 /* EOF */

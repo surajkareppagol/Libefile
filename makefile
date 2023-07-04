@@ -5,6 +5,11 @@ INCS = efile.h
 main: $(SRCS) $(INCS)
 	@$(CC) $(SRCS) -o main
 
+.PHONY: debug
+debug:
+	@$(CC) -o0 $(SRCS) -o debug.out -g
+	@gdb debug.out
+
 .PHONY: run
 run:
 	@./main

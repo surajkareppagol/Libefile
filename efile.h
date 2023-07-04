@@ -43,12 +43,6 @@ void eprint(FILE *filePtr);
 
 char *ereadLine(FILE *filePtr);
 
-/**************************************/
-/* Read a lines, Returns an array */
-/**************************************/
-
-// char **ereadLines(FILE *filePtr);
-
 #endif
 
 /**************************************/
