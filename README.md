@@ -62,6 +62,10 @@ make debug
 
   It takes file pointer or NULL as argument, if NULL is passed the file opened at the start will be selected. It also takes the number of lines as second argument, it is the number of lines to be read. It reads a lines from that file and returns a pointer to that.
 
+- `ewrite(FILE *filePtr, char *data)`
+
+  It takes file pointer or NULL as argument, if NULL is passed the file opened at the start will be selected. It also takes the data to be written as second argument and writes to the file.
+
 ## Results
 
 `Example`
