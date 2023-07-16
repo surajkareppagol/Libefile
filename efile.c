@@ -4,10 +4,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#define MAX_CHARACTER_BUFFER_LENGTH 10000
-#define MAX_LINE_BUFFER_LENGTH 10000
 
-char *characterBuffer, *initialCharacterAddress;
+#include "util.h"
 
 /**************************************/
 /* Main functions */
@@ -52,20 +50,7 @@ char *eread(FILE *filePtr)
   if (filePtr == NULL)
     filePtr = mainFilePtr;
 
-  char character;
-
-  characterBuffer = (char *)malloc(MAX_CHARACTER_BUFFER_LENGTH * sizeof(char));
-  initialCharacterAddress = characterBuffer;
-
-  while ((character = fgetc(filePtr)) != EOF)
-    *characterBuffer++ = character;
-
-  *characterBuffer++ = '\n';
-  *characterBuffer = '\0';
-
-  characterBuffer = NULL;
-
-  return initialCharacterAddress;
+  return readTillDelimeter(EOF, filePtr, 0);
 }
 
 /**************************************/
@@ -77,9 +62,15 @@ void eprint(FILE *filePtr)
   if (filePtr == NULL)
     filePtr = mainFilePtr;
 
-  char character;
-  while ((character = fgetc(filePtr)) != EOF)
-    printf("%c", character);
+  char printCharacter;
+
+  while (1)
+  {
+    printCharacter = fgetc(filePtr);
+    if (printCharacter == EOF)
+      break;
+    printf("%c", printCharacter);
+  }
   printf("\n");
 }
 
@@ -92,20 +83,19 @@ char *ereadLine(FILE *filePtr)
   if (filePtr == NULL)
     filePtr = mainFilePtr;
 
-  char character;
+  return readTillDelimeter('\n', filePtr, 0);
+}
 
-  characterBuffer = (char *)malloc(MAX_CHARACTER_BUFFER_LENGTH * sizeof(char));
-  initialCharacterAddress = characterBuffer;
+/**************************************/
+/* Read custom number of lines */
+/**************************************/
 
-  while ((character = fgetc(filePtr)) != '\n')
-    *characterBuffer++ = character;
+char *ereadCustomLines(FILE *filePtr, int lines)
+{
+  if (filePtr == NULL)
+    filePtr = mainFilePtr;
 
-  *characterBuffer++ = '\n';
-  *characterBuffer = '\0';
-
-  characterBuffer = NULL;
-
-  return initialCharacterAddress;
+  return readTillDelimeter('\0', filePtr, lines);
 }
 
 /**************************************/

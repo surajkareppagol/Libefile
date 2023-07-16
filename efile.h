@@ -6,6 +6,7 @@
 #define _EFILE_H_
 
 #include <stdio.h>
+#include <stdlib.h>
 
 /**************************************/
 /* Close file */
@@ -14,10 +15,17 @@
 #define eclose(filePtr) (fclose(filePtr))
 
 /**************************************/
+/* Free buffer */
+/**************************************/
+
+#define eFreeBuffer(bufferPtr) (free(bufferPtr))
+
+/**************************************/
 /* Open file */
 /**************************************/
 
-FILE *eopen(char *fileName, char *fileMode);
+FILE *
+eopen(char *fileName, char *fileMode);
 
 FILE *eopenr(char *fileName);
 
@@ -42,6 +50,12 @@ void eprint(FILE *filePtr);
 /**************************************/
 
 char *ereadLine(FILE *filePtr);
+
+/**************************************/
+/* Read custom number of lines */
+/**************************************/
+
+char *ereadCustomLines(FILE *filePtr, int lines);
 
 #endif
 
