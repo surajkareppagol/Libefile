@@ -41,7 +41,7 @@ int main()
 
   fseek(filePtr, 0, SEEK_SET);
 
-  eFreeBuffer(buffer);
+  eclose(filePtr);
 
   return 0;
 }

@@ -24,8 +24,7 @@
 /* Open file */
 /**************************************/
 
-FILE *
-eopen(char *fileName, char *fileMode);
+FILE *eopen(char *fileName, char *fileMode);
 
 FILE *eopenr(char *fileName);
 
@@ -56,6 +55,12 @@ char *ereadLine(FILE *filePtr);
 /**************************************/
 
 char *ereadCustomLines(FILE *filePtr, int lines);
+
+/**************************************/
+/* Write to file */
+/**************************************/
+
+int ewrite(FILE *filePtr, char *data);
 
 #endif
 

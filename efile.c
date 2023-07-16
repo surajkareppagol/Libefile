@@ -99,5 +99,20 @@ char *ereadCustomLines(FILE *filePtr, int lines)
 }
 
 /**************************************/
+/* Write to file */
+/**************************************/
+
+int ewrite(FILE *filePtr, char *data)
+{
+  if (filePtr == NULL)
+    filePtr = mainFilePtr;
+
+  for (int i = 0; *data != '\0'; i++)
+    fputc(*data++, filePtr);
+
+  return 1;
+}
+
+/**************************************/
 /* EOF */
 /**************************************/
