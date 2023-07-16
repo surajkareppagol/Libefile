@@ -1,6 +1,6 @@
 CC = gcc
-SRCS = efile.c main.c
-INCS = efile.h
+SRCS = util.c efile.c main.c
+INCS = util.h efile.h
 
 main: $(SRCS) $(INCS)
 	@$(CC) $(SRCS) -o main
@@ -12,7 +12,7 @@ debug:
 
 .PHONY: run
 run:
-	@./main
+	@clear && ./main
 
 .PHONY: clean
 clean:
