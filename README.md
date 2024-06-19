@@ -66,16 +66,16 @@ make debug
 
   It takes file pointer or NULL as argument, if NULL is passed the file opened at the start will be selected. It also takes the data to be written as second argument and writes to the file.
 
-## Results
+---
 
 `Example`
 
-![code_1](assets/code_1.png)
+![code_1](https://raw.githubusercontent.com/surajkareppagol/Assets/main/17%20-%20Libefile/code_1.png)
 
-![code_2](assets/code_2.png)
+![code_2](https://raw.githubusercontent.com/surajkareppagol/Assets/main/17%20-%20Libefile/code_2.png)
 
 `Output`
 
-![output_1](assets/output_1.png)
+![output_1](https://raw.githubusercontent.com/surajkareppagol/Assets/main/17%20-%20Libefile/output_1.png)
 
-![output_2](assets/output_2.png)
+![output_2](https://raw.githubusercontent.com/surajkareppagol/Assets/main/17%20-%20Libefile/output_2.png)
